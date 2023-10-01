@@ -5,8 +5,7 @@ const ses = new AWS.SES({ region: 'ap-southeast-1' });
 
 const handler = async (event) => {
     const bodyobject = JSON.parse(event.body);
-    const email = bodyobject.data.object.billing_details.email;
-    const name = bodyobject.data.object.billing_details.name;
+    const {email, name} = bodyobject.data.object.billing_details
     const price = bodyobject.data.object.amount;
 
     const transporter = nodemailer.createTransport({
@@ -23,7 +22,7 @@ const handler = async (event) => {
         from: 'support@talentinsight-europe.com', // Sender email
         to: email, // Reciever email
         subject: 'Proof of payment',
-        text: `Your payment in the amount of $${price / 100} has been successfully processed. Payment details: ${bodyobject.data.object.receipt_url}`,
+        text: `Hi, ${name}! Your payment in the amount of $${price / 100} has been successfully processed. Payment details: ${bodyobject.data.object.    }`,
     };
     try {
         const info = await transporter.sendMail(mailOptions);
