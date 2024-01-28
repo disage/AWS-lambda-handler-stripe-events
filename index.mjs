@@ -19,8 +19,8 @@ const handler = async (event) => {
     });
 
     const mailOptions = {
-        from: 'support@talentinsight-europe.com', // Sender email
-        to: email, // Reciever email
+        from: 'sender@mail.com', // Sender email
+        to: 'reciever@mail.com', // Reciever email
         subject: 'Proof of payment',
         text: `Hi, ${name}! Your payment in the amount of $${price / 100} has been successfully processed. Payment details: ${bodyobject.data.object.    }`,
     };
